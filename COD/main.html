@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Competitive Stat tracker</title>
+    <link rel="stylesheet" href="CSS/main.css">
+    
+
+</head>
+<body>
+
+<div class = "averages" id = "averages">
+
+    <div class = "averages-row">
+        <label for = "name">Name: </label>
+        <input type = "text" id = "name">
+
+    </div>
+
+
+    <div class = "averages-row">
+        <label for = "KD">KD: </label>
+        <input type = "number" id = "KD">
+
+    </div>
+ 
+
+
+    <div class = "averages-row">
+        <label for = "averageHillTime">Average Hill Time: </label>
+        <input type = "number" id = "averageHillTime">
+
+    </div>
+
+    <div class="averages-row">
+        <label for="winlossRatio"> Win Loss Ratio:</label>
+        <input type="number" id ='winLossRatio'>
+
+    </div>
+
+    <div class = "averages-row">
+        <label for = "scoreDifference">Average Score Difference: </label>
+        <input type = "number" id = "scoreDifference">
+
+    </div>
+
+    <div class = "transportButtons">
+        <button type = "button" onClick = "back()" id = "backButton">BACK</button>
+
+    </div>
+    
+
+
+
+
+
+
+</div>
+
+
+
+
+    <div class="sidebar" id = "sidebar">
+        <h2>Filter</h2>
+        <label><input type="checkbox" class="filter-checkbox" value="SND" id="filter-snd"> SND</label>
+        <label><input type="checkbox" class="filter-checkbox" value="HP" id="filter-hp"> Hardpoint</label>
+        <label><input type="checkbox" class="filter-checkbox" value="Control" id="filter-control"> Control</label>
+
+    <!-- Filter by result -->
+        <label><input type="checkbox" class="filter-checkbox" value="WON" id="filter-win"> Win</label>
+        <label><input type="checkbox" class="filter-checkbox" value="LOST" id="filter-lose"> Lose</label>
+    
+        <button onclick="applyFilters()">Apply Filters</button>
+        
+    </div>
+
+    <div class="Rsidebar" id = "Rsidebar">
+        <h2>MAP HISTORY</h2>
+
+        <div id="playerList"></div>
+        
+    </div>
+    
+<div class = "homePage" id = 'homePage'>
+    <div class = "title">
+    <h1>Nyko's Stat Tracker</h1>
+    </div>
+        <label for ="searchPlayer"></label>
+        <input type = "text" onkeydown="checkEnter(event)"  id = "searchPlayer" placeholder="Enter Name">
+        <button type ="button" onClick ="showPlayerInput()" id = "showInputFields">INPUT MAP DATA</button>
+ </div>
+<div class = "playerInput" id = "playerInput" hidden>
+        <h1>INPUT DATA</h1>
+    <div class = "gamemode">
+        <button type = "button" onClick = "SND()">SND</button>
+        <button type = "button" onClick = "HP()">HARDPOINT</button>
+        <button type = "button" onClick = "CONTROL()">CONTROL</button>
+        <input type="hidden" id="gamemode" value="HP">
+        <input type ='hidden' id ='id' value = '0'>
+        <input type = 'hidden' id = 'date' value = ''>
+
+    </div>
+
+    <div class = "playerInput-rows" >
+        <label for ="playerName">Player Name:</label>
+        <input type = "text" id = "playerName" placeholder = "Enter Player Name" onkeydown="checkEnter(event)">
+    </div>
+
+    <div class = "playerInput-rows" >
+        <label for ="side">Side</label>
+        <input type = "text" id = "side" placeholder = "Good or Bad" onkeydown="checkEnter(event)">
+    </div>
+
+    <div class = "playerInput-rows" >
+        <label for ="map">Map:</label>
+        <input type = "text" id = "map" placeholder="Enter Map">
+    </div>
+
+    <div class = "playerInput-rows">
+        <label for ="kills">Kills:</label>
+        <input type = "number" id = "kills" placeholder="    Enter Kills">
+    </div>
+
+    <div class = "playerInput-rows">
+        <label for ="deaths">Deaths:</label>
+        <input type = "number" id = "deaths" placeholder="     Enter Deaths">
+    </div>
+
+    <div class = "playerInput-rows" id="Hilltime">
+        <label for ="hillTime">Hill Time:</label>
+        <input type = "number" id = "hillTime" placeholder="     Enter Hill Time 90s">
+    </div>
+
+    <div class = 'playerInput-rows' id = 'Captured'>
+        <label for="Tickscaptured">Ticks Captured</label>
+        <input type="number" id = 'Tickscaptured' placeholder="     Enter Ticks Captured">
+    </div>
+    
+    <div class = 'playerInput-rows' id = 'ticksLost'>
+        <label for="TicksLost"> Ticks Lost</label>
+        <input type="number" id = 'TicksLost' placeholder="     Enter Ticks Lost">
+    </div>
+
+    <div class = "playerInput-rows" id="Attackwins">
+        <label for ="attackWins">Attack Wins:</label>
+        <input type = "number" id = "attackWins" placeholder="     Enter Attack Wins">
+    </div>
+    <div class = "playerInput-rows" id = 'attackLost'>
+        <label for="attackLost">Attack Lost</label>
+        <input type="number" id="attackLost">
+    
+    </div>
+    <div class = "playerInput-rows" id = 'defenceLost'>
+        <label for="defenceLost">Attack Lost</label>
+        <input type="number" id="defenceLost">
+    
+    </div>
+
+    <div class = "playerInput-rows" id="Defencewins">
+        <label for ="defenceWins">Defence Wins:</label>
+        <input type = "number" id = "defenceWins" placeholder="     Enter Defence Wins">
+    </div>
+    
+    <div class = "playerInput-rows">
+        <label for ="winOrLose">Win or Lose:</label>
+        <input type = "text" id = "winOrLose" placeholder="  Win or Lose">
+    </div>
+
+    <div class = "playerInput-rows">
+        <label for ="scoreDif">Score Difference:</label>
+        <input type = "number" id = "scoreDif" placeholder="    Score Difference">
+    </div>
+
+
+
+    <div class ="transportButtons">
+        <button type = "button" onClick = "addDataHP()"id ="HPsave">SAVE</button>
+        <button type = "button" onClick = "back()" id = "backButtonHome">BACK</button>
+    
+    </div>
+
+   
+
+</div>
+
+<div class = "playerInput-edit" id = "playerInput-edit">
+    <h1>INPUT DATA</h1>
+<div class = "gamemode">
+    <button type = "button" onClick = "SNDedit()">SND</button>
+    <button type = "button" onClick = "HPedit()">HARDPOINT</button>
+    <button type = "button" onClick = "CONTROLedit()">CONTROL</button>
+    <input type="hidden" id="gamemodeedit" value="">
+
+</div>
+
+<div class = "playerInput-rows-edit" >
+    <label for ="playerName-edit">Player Name:</label>
+    <input type = "text" id = "playerName-edit" placeholder = "Enter Player Name" onkeydown="checkEnter(event)">
+</div>
+
+<div class = "playerInput-rows-edit" >
+    <label for ="side-edit">Side</label>
+    <input type = "text" id = "side-edit" placeholder = "Good or Bad" onkeydown="checkEnter(event)">
+</div>
+
+<div class = "playerInput-rows-edit" >
+    <label for ="map-edit">Map:</label>
+    <input type = "text" id = "map-edit" placeholder="Enter Map">
+</div>
+
+<div class = "playerInput-rows-edit">
+    <label for ="kills-edit">Kills:</label>
+    <input type = "number" id = "kills-edit" placeholder="    Enter Kills">
+</div>
+
+<div class = "playerInput-rows-edit">
+    <label for ="deaths-edit">Deaths:</label>
+    <input type = "number" id = "deaths-edit" placeholder="     Enter Deaths">
+</div>
+
+<div class = "playerInput-rows-edit" id="hillTime">
+    <label for ="hillTime-edit">Hill Time:</label>
+    <input type = "number" id = "hillTime-edit" placeholder="     Enter Hill Time 90s">
+</div>
+
+<div class = 'playerInput-rows-edit' id = 'Tickscaptured-edit'>
+    <label for="ticksCaptured">Ticks Captured</label>
+    <input type="number" id = 'ticksCaptured' placeholder="     Enter Ticks Captured">
+</div>
+
+<div class = 'playerInput-rows-edit' id = 'Tickslost-edit'>
+    <label for="ticksLost-edit">Ticks Lost</label>
+    <input type="number" id = 'ticksLost-edit' placeholder="     Enter Ticks Lost">
+</div>
+
+<div class = "playerInput-rows-edit" id = "attackWins-edit">
+    <label for ="attackWins-edit">Attack Wins:</label>
+    <input type = "number" id = "attackWins-edit" placeholder="     Enter Attack Wins">
+</div>
+<div class = "playerInput-rows-edit" id = 'attackLost-edit'>
+    <label for="attackLost-edit">Attack Lost</label>
+    <input type="number" id="attackLost-edit">
+
+</div>
+<div class = "playerInput-rows-edit" id = 'defenceLost-edit'>
+    <label for="defenceLost-edit">Attack Lost</label>
+    <input type="number" id="defenceLost-edit">
+
+</div>
+<div class = "playerInput-rows-edit" id = 'defenceWins-edit'>
+    <label for ="defenceWins-edit">Defence Wins:</label>
+    <input type = "number" id = "defenceWins-edit" placeholder="     Enter Defence Wins">
+</div>
+
+<div class = "playerInput-rows-edit">
+    <label for ="winOrLose-edit">Win or Lose:</label>
+    <input type = "text" id = "winOrLose-edit" placeholder="  Win or Lose">
+</div>
+
+<div class = "playerInput-rows-edit">
+    <label for ="scoreDif-edit">Score Difference:</label>
+    <input type = "number" id = "scoreDif-edit" placeholder="    Score Difference">
+</div>
+
+
+
+<div class ="transportButtons-edit">
+    <button type = "button" onClick = "editData()"id ="editSave">SAVE</button>
+    <button type = "button" onClick = "searchPlayerName()" id ='backButton-edit'>BACK</button>
+</div>
+
+
+
+</div>
+
+
+
+       <script src="main.js"></script>
+</body>
+</html>
+
